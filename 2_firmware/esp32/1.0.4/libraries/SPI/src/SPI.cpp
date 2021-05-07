@@ -48,16 +48,19 @@ void SPIClass::begin(int8_t sck, int8_t miso, int8_t mosi, int8_t ss)
     if(!_spi) {
         return;
     }
-	
+
     if(sck == -1 && miso == -1 && mosi == -1 && ss == -1) {
-        _sck = (_spi_num == VSPI) ? 10 : 14;
+        _sck = (_spi_num == VSPI) ? SCK : 14;
+		//_miso = (_spi_num == VSPI) ? MISO : 12;
         _miso = (_spi_num == VSPI) ? MISO : 26;
-        _mosi = (_spi_num == VSPI) ? 9 : 13;
+        _mosi = (_spi_num == VSPI) ? MOSI : 13;
         _ss = (_spi_num == VSPI) ? SS : 15;
     } else {
-        _sck = 10;
+        //_sck = sck;
+		_sck = 10;
         _miso = miso;
-        _mosi = 9;
+        //_mosi = mosi;
+		_mosi = 9;
         _ss = ss;
     }
 
